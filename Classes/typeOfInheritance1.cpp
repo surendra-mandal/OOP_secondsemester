@@ -15,25 +15,25 @@ class personalInfo
 {
     protected:
     string name;
-    long int id;
+    long int identityNo;
     public:
     personalInfo()   //Default constructor
     {
         cout<<"Default constructor of base class personalInfo is called."<<endl;
-        this->name=name;
-        this->id=id;
+        name="";
+        identityNo=0;
     }
-    personalInfo(string n, long int a):name(n), id(a)   //Parametrized constructor
+    personalInfo(string n, long int a):name(n), identityNo(a)   //Parametrized constructor
     {
         cout<<"Parametrized constructor of base class personalInfo is called."<<endl;
     }
     void show()
     {
-        cout<<"Name: "<<name<<" id: "<<id<<endl;
+        cout<<"Name: "<<name<<endl<<"Identity No.: "<<identityNo<<endl;
     }
     ~personalInfo()
     {
-        cout<<"Donstructor of base class personalInfo is called."<<endl;
+        cout<<"Destructor of base class personalInfo is called."<<endl;
     }
 
 };
@@ -45,8 +45,8 @@ class id
     id()   //Default constructor
     {
         cout<<"Default constructor of base class id is called."<<endl;
-        this->citizenship=citizenship;
-        this->NIN=NIN;
+        citizenship=0;
+        NIN=0;
     }
     id(long int c, long int n):citizenship(c), NIN(n)    //Parametrized constructor
     {
@@ -54,11 +54,11 @@ class id
     }
     void show()
     {
-        cout<<"Citizenship No.: "<<citizenship<<" NIN: "<<NIN<<endl;
+        cout<<"Citizenship No.: "<<citizenship<<endl<<"NIN: "<<NIN<<endl;
     }
     ~id()  //Destructor
     {
-        cout<<"Donstructor of base class id is called."<<endl;
+        cout<<"Destructor of base class id is called."<<endl;
     }
 };
 class location: public personalInfo, public id
@@ -69,7 +69,7 @@ class location: public personalInfo, public id
     {
         longi=lati=0.0;
     }
-    location(string name, long int id, long int citizenship, long int NIN, float x, float y):longi(x), lati(y)   //Parametrized constructor
+    location(string name, long int identityNo, long int citjizenship, long int NIN, double x, double y):personalInfo(name, identityNo), id(citizenship, NIN),   longi(x), lati(y)   //Parametrized constructor
     {
         cout<<"Parametrized constructor of derived class location is called."<<endl;
     }
@@ -77,12 +77,16 @@ class location: public personalInfo, public id
     {
         personalInfo::show();
         id::show();
-        cout<<"Longitude: "<<longi<<" Latitude: "<<lati<<endl;
+        cout<<"Longitude: "<<longi<<endl<<"Latitude: "<<lati<<endl;
+    }
+    ~location()  //Destructor
+    {
+        cout<<"Destructor of derived class location is called."<<endl;
     }
 };
 int main()
 {
-    location l("Surendra", 8289, 01332, 6758, 2788, 2677);
+    location l("Surendra Kumar Mandal", 8289, 01332, 6758, 2788.0, 2677.0);
     l.show();
     return 0;
 }
