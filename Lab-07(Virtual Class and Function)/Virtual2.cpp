@@ -1,11 +1,10 @@
-//
-
+//...
 #include<iostream>
 using namespace std;
 class shape
 {
     public:
-    void draw()
+    virtual void draw()
     {
         cout<<"Drawn Successfully."<<endl;
     }
@@ -15,7 +14,8 @@ class circle: virtual public shape
     public:
     void draw()
     {
-        cout<<"Circle Drawn Successfully."<<endl;
+        shape::draw(); // Calling the base class draw function
+        cout<<"Circle"<<endl;
     }
 };
 class rectangle: virtual public shape
@@ -23,7 +23,8 @@ class rectangle: virtual public shape
     public:
     void draw()
     {
-        cout<<"Rectangle Drawn Successfully."<<endl;
+        shape::draw(); // Calling the base class draw function
+        cout<<"Rectangle"<<endl;
     }
 };
 class triangle: public shape
@@ -31,7 +32,8 @@ class triangle: public shape
     public:
     void draw()
     {
-        cout<<"Triangle Drawn Successfully."<<endl;
+        shape::draw(); // Calling the base class draw function
+        cout<<"Triangle"<<endl;
     }
 };
 int main()

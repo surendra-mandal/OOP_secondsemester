@@ -10,6 +10,7 @@ class person
 {
     protected:
     string name;
+    public:
     person(){} //default constructor
     person(string n):name(n){} //parametrized constructor
     void display()
@@ -36,8 +37,12 @@ class teachingAssistant: public student, public employee
 {
     public:
     teachingAssistant(){} //default constructor
-    teachingAssistant(string n):student(n),employee(n){} //parametrized constructor
+    teachingAssistant(string n):person(n),student(n),employee(n){} //parametrized constructor
     ~teachingAssistant(){} //destructor
+    void display()
+    {
+        person::display(); // Resolving ambiguity by explicitly calling the display function from person class
+    }
 };
 int main()
 {
